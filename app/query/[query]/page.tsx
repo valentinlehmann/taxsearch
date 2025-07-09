@@ -16,6 +16,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import Highlighter from "react-highlight-words";
 
 export default function QueryPage() {
     const params = useParams<{ query: string; }>();
@@ -63,7 +64,7 @@ export default function QueryPage() {
                                     <div className={"w-full"}>
                                         <h2 className={"text-xs"}><b>{result.body}. {result.courtType}</b> | {result.caseNumber} | {date.format("DD.MM.YYYY")}</h2>
                                         <h1 className={""}>{result.docType} | <b>{result.title}</b></h1>
-                                        <p className={"text-xs text-muted-foreground line-clamp-1 text-ellipsis"}>{result._formatted?.fact || result.fact}</p>
+                                        <p className={"text-xs text-muted-foreground line-clamp-6 text-ellipsis md:line-clamp-3"}><Highlighter highlightClassName={"bg-yellow-200"} searchWords={query.replaceAll("\"", "").split(" ")} textToHighlight={result._formatted?.fact || result.fact || ""}/></p>
                                     </div>
                                     <Button className={"cursor-pointer"} onClick={() => {
                                         window.open(`https://www.rechtsprechung-im-internet.de/jportal/portal/t/1aw1/page/bsjrsprod.psml?doc.id=jb-${result.docNumber}&showdoccase=1&doc.part=L`, "_blank");
