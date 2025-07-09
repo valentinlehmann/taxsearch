@@ -8,7 +8,7 @@ export default function Home() {
             <h1 className={"text-4xl font-black"}>Willkommen bei TaxSearch!</h1>
             <p>Dein Tool für Volltextsuche über die Entscheidungen des Bundesfinanzhofs.</p>
 
-            <div className={"mt-8 w-full max-w-96 flex flex-col gap-1"}>
+            <div className={"mt-8 w-full md:max-w-96 flex flex-col gap-1"}>
                 <SearchBar displayResults={true} />
             </div>
         </div>
