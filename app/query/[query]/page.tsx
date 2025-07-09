@@ -47,7 +47,7 @@ export default function QueryPage() {
 
     return (
         <div className={"w-full h-full flex justify-center"}>
-            <div className={"w-full max-w-3/4"}>
+            <div className={"w-full md:max-w-3/4"}>
                 <SearchBar defaultValue={query} displayResults={false} />
 
                 <div className={"mt-8 flex flex-col gap-2"}>
