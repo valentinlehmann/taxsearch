@@ -30,6 +30,8 @@ export default function QueryPage() {
     useEffect(() => {
         meili.index("bfh").search(query, {
             offset: page * 20,
+            attributesToCrop: ["fact"],
+            cropLength: 25,
         }).then((response) => {
             setResults(response.hits as Hits<CaseDocument>);
             setCount(response.estimatedTotalHits);
@@ -61,6 +63,7 @@ export default function QueryPage() {
                                     <div className={"w-full"}>
                                         <h2 className={"text-xs"}><b>{result.body}. {result.courtType}</b> | {result.caseNumber} | {date.format("DD.MM.YYYY")}</h2>
                                         <h1 className={""}>{result.docType} | <b>{result.title}</b></h1>
+                                        <p className={"text-xs text-muted-foreground line-clamp-1 text-ellipsis"}>{result._formatted?.fact || result.fact}</p>
                                     </div>
                                     <Button className={"cursor-pointer"} onClick={() => {
                                         window.open(`https://www.rechtsprechung-im-internet.de/jportal/portal/t/1aw1/page/bsjrsprod.psml?doc.id=jb-${result.docNumber}&showdoccase=1&doc.part=L`, "_blank");
