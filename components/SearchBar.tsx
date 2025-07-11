@@ -19,6 +19,14 @@ export default function SearchBar({displayResults, defaultValue}: {displayResult
         });
     }, [searchQuery]);
 
+    function handleSubmit() {
+        if (searchQuery.trim() === "") {
+            return;
+        }
+
+        router.push("/query/" + encodeURIComponent(searchQuery));
+    }
+
     return (
         <div className={"w-full"}>
             <div className={"w-full flex flex-row gap-2"}>
@@ -29,11 +37,9 @@ export default function SearchBar({displayResults, defaultValue}: {displayResult
                         return;
                     }
 
-                    router.push("/query/" + encodeURIComponent(searchQuery));
+                    handleSubmit();
                 }} className={"flex-1"} placeholder={"§ 11 Abs 1 S 4 EStG"}/>
-                <Button onClick={() => {
-                    router.push("/query/" + encodeURIComponent(searchQuery));
-                }}><IconSend/></Button>
+                <Button onClick={handleSubmit}><IconSend/></Button>
             </div>
             {
                 displayResults && (

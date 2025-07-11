@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/pagination"
 import Highlighter from "react-highlight-words";
 
+const entriesPerPage = 20;
+
 export default function QueryPage() {
     const params = useParams<{ query: string; }>();
     const query = decodeURIComponent(params.query);
@@ -30,7 +32,7 @@ export default function QueryPage() {
 
     useEffect(() => {
         meili.index("bfh").search(query, {
-            offset: page * 20,
+            offset: page * entriesPerPage,
             attributesToCrop: ["fact"],
             cropLength: 25,
         }).then((response) => {
@@ -43,8 +45,8 @@ export default function QueryPage() {
         return <p>Ergebnisse werden geladen.</p>;
     }
 
-    const startId = (page * 20) + 1;
-    const isLastPage = count <= (page + 1) * 20;
+    const startId = (page * entriesPerPage) + 1;
+    const isLastPage = count <= (page + 1) * entriesPerPage;
 
     const generatePageLink = (pageNumber: number) => "/query/" + encodeURIComponent(query) + "/?page=" + pageNumber;
 
