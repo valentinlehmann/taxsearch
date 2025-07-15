@@ -1,12 +1,12 @@
 # TaxSearch
 
-This project provides a web app interacting with a MeiliSearch instance to search for decisions made by the Federal Tax Court of Germany (Bundesfinanzhof).
+This project provides a web app interacting with a MeiliSearch instance to search for decisions made by the Federal Tax Court of Germany (Bundesfinanzhof, BFH).
 
 ## Deployment
 To deploy the app, you can use the provided Dockerfile. The app is built using Next.js and is designed to run in a Docker container.
 ## Prerequisites
 - Docker installed on your machine.
-- A MeiliSearch instance with the data to query running and accessible.
+- A MeiliSearch instance with the data to query running and accessible. (You can use my project [valentinlehmann/taxsearch-scraper](https://github.com/valentinlehmann/taxsearch-scraper) to download the data from the BFH)
 - A MeiliSearch API key with read permissions for the "bfh" index.
 - The following environment variables:
   - `NEXT_PUBLIC_MEILI_HOST`: The URL of your MeiliSearch instance.
